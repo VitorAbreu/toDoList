@@ -4,18 +4,14 @@
     alt="Your list is empty - illustrative image"
     loading="eager"
   />
-  <button class="btn btn-primary">Create your To Do List</button>
-
-  <div>
-    <label for="" class="input-label-text" for="inputValue">
-      <input
-        type="text"
-        placeholder="Add a new item"
-        autofocus
-        id="inputValue"
-      >
-
-      <button class="btn btn-primary-circle" title="Add a new item"></button>
-    </label>
-  </div>
+  @if(addItem()) {
+  <button class="btn btn-primary" (click)="addItem.set(false)">
+    Create your To Do List
+  </button>
+  } @else {
+    <app-input-add-item
+      (outputAddListItems)="getInputAndAddItem($event)"
+      [inputListItems]="getListItems()"
+    />
+  }
 </div>
