@@ -14,7 +14,9 @@ export class ListComponent {
   getListItems = this.#setListItems.asReadonly();
 
   #parseItems() {
-    return JSON.parse(localStorage.getItem('@my-list') || '[]');
+    const list = JSON.parse(localStorage.getItem('@my-list') || '[]');
+    console.log(list)
+    return list;
   }
 
   getInputAndAddItem(value: IListItems) {

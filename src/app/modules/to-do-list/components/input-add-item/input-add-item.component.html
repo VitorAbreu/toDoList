@@ -1,12 +1,16 @@
 <header [ngClass]="{
-  'has-items': inputListItems.length
+  'has-items': inputListItems().length
   }"
 >
-  @if(inputListItems.length) {
+  @if(inputListItems().length) {
     <h1>My list</h1>
   }
-  <div>
-    <label for="" class="input-label-text" for="inputValue">
+  <div [ngClass]="{container: inputListItems().length}">
+    <label
+      class="input-label-text"
+      for="inputValue"
+      [ngClass]="{'remove-margin-bottom': !inputListItems().length}"
+    >
       <input
         type="text"
         placeholder="Add a new item"
