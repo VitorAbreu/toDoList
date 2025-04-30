@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, inject, input, output, ViewChild } from '@angular/core';
-import { IListItems } from '../../../interfaces/IListItems.interface';
+import { IListItems } from '../../interfaces/IListItems.interface';
 import { NgClass } from '@angular/common';
 
 @Component({
