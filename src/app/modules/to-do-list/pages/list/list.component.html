@@ -23,6 +23,15 @@
 />
 
 <main class="container">
+  @if (listItemsStage('pending').length) {
+    <h2>Pending issues</h2>
+    <app-input-list-item [inputListItems]="listItemsStage('pending')"/>
+  }
+
+  @if (listItemsStage('completed')) {
+    <h2>Finished</h2>
+    <app-input-list-item [inputListItems]="listItemsStage('completed')"/>
+  }
 </main>
 
 <footer><button class="btn btn-danger" (click)="deleteAllItems()">Delete All Items</button></footer>
