@@ -14,9 +14,7 @@ export class ListComponent {
   getListItems = this.#setListItems.asReadonly();
 
   #parseItems() {
-    const list = JSON.parse(localStorage.getItem('@my-list') || '[]');
-    console.log(list)
-    return list;
+    return JSON.parse(localStorage.getItem('@my-list') || '[]');
   }
 
   getInputAndAddItem(value: IListItems) {
@@ -24,6 +22,11 @@ export class ListComponent {
       '@my-list', JSON.stringify([...this.#setListItems(),value])
     );
 
+    return this.#setListItems.set(this.#parseItems());
+  }
+
+  deleteAllItems() {
+    localStorage.removeItem('@my-list');
     return this.#setListItems.set(this.#parseItems());
   }
 }
