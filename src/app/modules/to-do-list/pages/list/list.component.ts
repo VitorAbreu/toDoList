@@ -36,4 +36,47 @@ export class ListComponent {
       return value === 'pending' ? !res.checked : res.checked;
     })
   }
+
+  updateItemCheckBox(newItem: {id: string, checked: boolean}) {
+    this.#setListItems.update((oldValue: IListItems[]) => {
+      oldValue.filter(item => {
+        if(item.id === newItem.id) {
+          item.checked = newItem.checked;
+        }
+        return item;
+      });
+
+      return oldValue;
+    });
+
+    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItems));
+  }
+
+  updateItemValue(newItem: {id: string, value: string}) {
+    this.#setListItems.update((oldValue: IListItems[]) => {
+      oldValue.filter(item => {
+        if(item.id === newItem.id) {
+          item.value = newItem.value;
+        }
+        return item;
+      });
+
+      return oldValue;
+    });
+
+    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItems));
+  }
+
+  deleteItem(id: string) {
+    this.#setListItems.update((oldValue: IListItems[]) => {
+      const deletedItemIndex = oldValue.filter(item => item.id === id);
+
+      if(deletedItemIndex[0])
+        oldValue.splice(oldValue.indexOf(deletedItemIndex[0]), 1);
+
+      return oldValue;
+    });
+
+    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItems));
+  }
 }
